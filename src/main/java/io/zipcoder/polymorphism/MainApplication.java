@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class MainApplication {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        // Declare and initialize a list to store pets. It uses polymorphism to store different types of pets.
         List<Pet> pets = new ArrayList<>();
 
         System.out.println("How many pets do you have?");
@@ -29,6 +30,7 @@ public class MainApplication {
             System.out.println("What is the name of this pet?");
             String petName = scanner.nextLine();
 
+            // Use a switch statement to create an instance of the appropriate Pet subclass based on the pet type
             switch (petType.toLowerCase()) {
                 case "dog":
                     pets.add(new Dog(petName));
