@@ -11,14 +11,20 @@ public class MainApplication {
 
         System.out.println("How many pets do you have?");
         int numberOfPets = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline left-over
-
-//        String[] petTypes = new String[numberOfPets];
-//        String[] petNames = new String[numberOfPets];
+        scanner.nextLine();
 
         for (int i = 0; i < numberOfPets; i++) {
-            System.out.println("What kind of pet is pet number " + (i + 1) + "?");
-            String petType = scanner.nextLine();
+            String petType = "";
+            while (true) {
+                System.out.println("What kind of pet is pet number " + (i + 1) + "? (we only support dogs, cats, and birds)");
+                petType = scanner.nextLine().trim().toLowerCase();
+                if (petType.equals("dog") || petType.equals("cat") || petType.equals("bird")) {
+                    break; // Exit the loop if the user enters a supported animal
+                } else {
+                    System.out.println("Please choose a supported animal (cat, dog, or bird).");
+                }
+            }
+
 
             System.out.println("What is the name of this pet?");
             String petName = scanner.nextLine();
@@ -33,21 +39,11 @@ public class MainApplication {
                 case "bird":
                     pets.add(new Bird(petName));
                     break;
-                default:
-                    System.out.println("Unsupported pet type.");
-                    break;
             }
         }
         for (Pet pet : pets) {
             System.out.println(pet.getName() + " says " + pet.speak());
         }
-
-        // Print out the list of pets
-//        for (int i = 0; i < numberOfPets; i++) {
-//            System.out.println("Pet #" + (i + 1) + ": " + petTypes[i] + " named " + petNames[i]);
-//        }
-
-
     }
 
     }
